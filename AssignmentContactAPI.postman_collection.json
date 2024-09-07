@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "5ecfd649-577a-472f-bf04-bb23ad47434c",
+		"name": "AssignmentContactAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36929889"
+	},
+	"item": [
+		{
+			"name": "1-GETContactLists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-GETAContact",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contactID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-PUTAContact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjljMWFhZmRmMWU4NDAwMTMxZDlkNzUiLCJpYXQiOjE3MjIxNTQ4MjF9.bGyT9NIrfHeG_XoChIVWzkYVVJqUTtJWeWU3sLLu3Fk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"669c1df3df1e8400131d9d7c\",\r\n    \"firstName\": \"ANURAG\",\r\n    \"lastName\": \"Shagun\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contactID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-PATCHAContact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjljMWFhZmRmMWU4NDAwMTMxZDlkNzUiLCJpYXQiOjE3MjIxNTQ4MjF9.bGyT9NIrfHeG_XoChIVWzkYVVJqUTtJWeWU3sLLu3Fk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"ANURAG\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"raagahaya@raj.com\",\r\n    \"phone\": \"8005555551\",\r\n    \"street1\": \"1 Main St.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contactID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-DELETEAContact",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjljMWFhZmRmMWU4NDAwMTMxZDlkNzUiLCJpYXQiOjE3MjIxNTQ4MjF9.bGyT9NIrfHeG_XoChIVWzkYVVJqUTtJWeWU3sLLu3Fk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"ANURAG\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"rafhh@raj.com\",\r\n    \"phone\": \"8005555551\",\r\n    \"street1\": \"1 Main St.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contactID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://thinking-tester-contact-list.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjljMWFhZmRmMWU4NDAwMTMxZDlkNzUiLCJpYXQiOjE3MjIxNTQ4MjF9.bGyT9NIrfHeG_XoChIVWzkYVVJqUTtJWeWU3sLLu3Fk",
+			"type": "string"
+		}
+	]
+}

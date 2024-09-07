@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "5ecfd649-577a-472f-bf04-bb23ad47434c",
+		"name": "AssignmentContactAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36929889"
+	},
+	"item": [
+		{
+			"name": "1-CREATEContactLists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"const contactid = response._id;\r",
+							"console.log(\"Contact ID is == \" + contactid);\r",
+							"\r",
+							"pm.variables.set(\"contact_ID\", contactid);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"SRI\",\r\n    \"lastName\": \"KUMAR\",\r\n    \"birthdate\": \"1973-03-03\",\r\n    \"email\": \"shrikumar@gmail.com\",\r\n    \"phone\": \"8005555500\",\r\n    \"street1\": \"23 foreign street col\",\r\n    \"street2\": \"street next 2\",\r\n    \"city\": \"LA\",\r\n    \"stateProvince\": \"US\",\r\n    \"postalCode\": \"45222\",\r\n    \"country\": \"USA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-GETAContact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contact_ID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contact_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-PATCHAContact",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"MISHRA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contact_ID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contact_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-DELETEAContact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contact_ID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contact_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-GETDeletedUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts/{{contact_ID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{contact_ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Response time is less than 5000ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://thinking-tester-contact-list.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjljMWFhZmRmMWU4NDAwMTMxZDlkNzUiLCJpYXQiOjE3MjM3NDEyOTd9.Obc1A39b7EGnKxmcod01KMoftq3A2DTCCCK3sHuFR-M",
+			"type": "string"
+		}
+	]
+}
