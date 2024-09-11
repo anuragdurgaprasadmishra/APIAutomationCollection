@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+
+        stage('Build') {
+            steps {
+                echo("Building First Pipeline war")
+            }
+        }
+
+        stage("Deploy to PL QA"){
+            steps{
+                echo("Deploy to QA")
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/anuragdurgaprasadmishra/APIAutomationCollection'
+            }
+        }
+        stage('Run api test cases') {
+            steps {
+                bat 'newman run ./BookingAPIs.postman_collection.json  -e ./BookingAPIEnv.postman_environment.json -n 1 -r htmlextra --reporter-htmlextra-export ./results/booking_report.html'
+            }
+        }
+        stage('Publish HTML Extra Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: true, 
+                                  reportDir: 'results', 
+                                  reportFiles: 'booking_report.html', 
+                                  reportName: 'HTML Extra API Report', 
+                                  reportTitles: ''])
+            }
+        }
+
+        stage("Deploy to PL PROD"){
+            steps{
+                echo("deploy to PROD")
+            }
+        }
+    }
+}
